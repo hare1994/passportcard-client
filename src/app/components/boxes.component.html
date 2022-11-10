@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="states-help">
+    <div *ngFor="let box of boxesAsArray" class="box-help-line">
+      <div class="box-color" [ngClass]="{'kws_keridos': box === boxesStateEnum.KWS_KERIDOS,
+                                  'kws_keridos_yg': box === boxesStateEnum.KWS_KERIDOS_YG,
+                                  'error': box === boxesStateEnum.ERROR,
+                                  'unknown': box === boxesStateEnum.UNKNOWN}"></div>
+      <label>{{box}}</label>
+    </div>
+  </div>
+  <div class="boxes-parent" >
+    <div *ngFor="let box of boxes" class="box" [ngClass]="{'kws_keridos': box.state === boxesStateEnum.KWS_KERIDOS,
+                                  'kws_keridos_yg': box.state === boxesStateEnum.KWS_KERIDOS_YG,
+                                  'error': box.state === boxesStateEnum.ERROR,
+                                  'unknown': box.state === boxesStateEnum.UNKNOWN}">
+
+    </div>
+  </div>
+</div>

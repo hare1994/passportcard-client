@@ -1,0 +1,65 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+
+  .states-help {
+    border: 1px black solid;
+    padding: 30px 10px;
+    width: 250px;
+
+    .box-help-line {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+    label {
+      color: black;
+      margin: 0 !important;
+    }
+
+    .box-color {
+      margin-right: 5px;
+      width: 15px;
+      height: 15px;
+      border: 1px solid black;
+    }
+    }
+  }
+
+  .boxes-parent {
+    display: flex;
+    flex-wrap: wrap;
+    width: 900px;
+  }
+
+  .box {
+    display: inline-block;
+    margin: 5px 0 0 5px;
+    flex-grow: 1;
+    height: 80px;
+    width: calc(100% * (1/9) - 5px);
+    border-radius: 10px;
+    border: 1px solid black;
+  }
+
+  .kws_keridos {
+    background-color: aqua;
+  }
+
+  .kws_keridos_yg {
+    background-color: darkorange;
+  }
+
+  .unknown {
+    background-color: goldenrod;
+  }
+
+  .error {
+    background-color: gray;
+  }
+}
