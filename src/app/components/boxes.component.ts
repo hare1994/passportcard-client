@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Subscription, interval } from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {StatesService} from "../services/states.service";
 
 enum BoxesStates {
   KWS_KERIDOS = 'KWS_KERIDOS',
@@ -27,7 +27,7 @@ export class BoxesComponent implements OnInit {
   public boxesAsArray = Object.keys(this.boxesStateEnum);
 
 
-  constructor(private http: HttpClient) {
+  constructor(public statesService : StatesService) {
 
   }
 
@@ -41,9 +41,16 @@ export class BoxesComponent implements OnInit {
       return;
     }
 
-    this.http.get<any>('http://localhost:3000/states/getRandomStates').subscribe(data => {
+   this.statesService.getStates().subscribe(data => {
       console.log("response from server", data.states);
-      this.boxes = data.states;
+      if (data.states.length === data.maxStatesNumber) { // first time we randomize / after randomize all have changed
+        this.boxes = data.states;
+      } else { // update only the values of the boxes that were changed
+        data.states.forEach((state: Box) => {
+          this.boxes[state.id] = state;
+        })
+      }
+
     }, error => {
       this.subscription.unsubscribe();
     })
